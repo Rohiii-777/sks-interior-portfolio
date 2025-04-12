@@ -85,7 +85,7 @@ a:hover {
 /* ============================= */
 
 .hero {
-  background-image: url('IMG_20220126_000856_034.jpg');
+  background-image: url('/public/batman.jpg');
   background-size: cover;
   background-position: center;
   color: white;
