@@ -94,22 +94,22 @@ export default function App() {
         <h2>Our Portfolio</h2>
         <div className="portfolio-grid">
           <div className="portfolio-item">
-            <img src="ht.jpg" alt="Project 1" />
+            <img src="gojo.jpg" alt="Project 1" />
             <h3>Living Room Design</h3>
             <p>Modern design with a touch of elegance and functionality.</p>
           </div>
           <div className="portfolio-item">
-            <img src="ht.jpg" alt="Project 2" />
+            <img src="gojo.jpg" alt="Project 2" />
             <h3>Office Space</h3>
             <p>Maximized productivity with ergonomic designs and aesthetics.</p>
           </div>
           <div className="portfolio-item">
-            <img src="ht.jpg" alt="Project 3" />
+            <img src="gojo.jpg" alt="Project 3" />
             <h3>Bedroom Makeover</h3>
             <p>A cozy and sophisticated bedroom design for relaxation.</p>
           </div>
           <div className="portfolio-item">
-            <img src="ht.jpg" alt="Project 4" />
+            <img src="gojo.jpg" alt="Project 4" />
             <h3>Modular Kitchen</h3>
             <p>Functional and stylish kitchen design that suits any space.</p>
           </div>
