@@ -1,51 +1,483 @@
+:root {
+  --primary-color: #0070f3;
+  --accent-color: #00c897;
+  --background-color: #fafafa;
+  --text-color: #111;
+  --box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Add this wrapper to ensure centering of the main content */
+.container {
+  width: 100%;
+  max-width: 1200px; /* Adjust this max width as per your design */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ============================= */
+/* ✅ BASE STYLES               */
+/* ============================= */
+
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  background-color: var(--background-color);
+  line-height: 1.6;
 }
 
-.container {
-  height: 100vh;
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ============================= */
+/* ✅ NAVBAR                    */
+/* ============================= */
+
+.navbar {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.card {
-  background: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.nav-links li a:hover {
+  color: var(--primary-color);
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ============================= */
+/* ✅ HERO SECTION              */
+/* ============================= */
+
+.hero {
+  background-image: url('ht.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  height: 80vh;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
   text-align: center;
 }
 
-.card h1 {
+.hero h1 {
+  font-size: 3rem;
   margin-bottom: 0.5rem;
-  color: #222;
 }
 
-.card p {
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* ============================= */
+/* ✅ SECTIONS                  */
+/* ============================= */
+
+.section {
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.about,
+.services,
+.contact {
+  background-color: white;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: var(--box-shadow);
+}
+
+.section h2 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.services ul {
+  padding-left: 1rem;
+}
+
+.contact ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.contact li {
   margin: 0.5rem 0;
+  color: #555;
 }
 
-.card ul {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
+/* ============================= */
+/* ✅ PORTFOLIO                 */
+/* ============================= */
+
+.portfolio {
+  padding: 3rem 2rem;
+  text-align: center;
 }
 
-.card li {
-  margin: 0.3rem 0;
+.portfolio h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
 
-.card a {
-  color: #fff;
-  background: #111;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  display: inline-block;
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.portfolio-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-item h3 {
+  font-size: 1.4rem;
   margin-top: 1rem;
+}
+
+.portfolio-item p {
+  font-size: 1rem;
+  color: #555;
+  padding: 0 1rem 1rem;
+}
+
+.portfolio-item:hover {
+  transform: scale(1.05);
+}
+
+.portfolio-item:hover img {
+  opacity: 0.9;
+}
+
+/* ============================= */
+/* ✅ CTA SECTION               */
+/* ============================= */
+
+.cta {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--primary-color);
+}
+
+/* ============================= */
+/* ✅ FOOTER                    */
+/* ============================= */
+
+footer {
+  background: #f1f1f1;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* ============================= */
+/* ✅ ANIMATIONS                */
+/* ============================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about,
+.services {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  transition: opacity 1s ease-in-out;
+}
+
+.services {
+  animation: slideUp 1s ease-in-out forwards;
+}
+
+/* ============================= */
+/* ✅ RESPONSIVE DESIGN         */
+/* ============================= */
+
+/* Tablets & Phones */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    display: none;
+    box-shadow: var(--box-shadow);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hero {
+    padding: 4rem 1rem;
+    height: 60vh;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta {
+    padding: 2rem 1rem;
+  }
+
+  .cta h2 {
+    font-size: 1.6rem;
+  }
+
+  .cta p {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .portfolio-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .portfolio-item p {
+    font-size: 0.95rem;
+  }
+
+  .cta h2 {
+    font-size: 1.4rem;
+  }
+
+  .cta p {
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 0.7rem 1.2rem;
+  }
+}
+
+.testimonials {
+  background-color: #f9f9f9;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  flex: 1;
+}
+
+.testimonial-card p {
+  font-size: 1rem;
+  font-style: italic;
+  color: #555;
+}
+
+.testimonial-card h4 {
+  font-size: 1.2rem;
+  color: #0070f3;
+  margin-top: 1rem;
+}
+
+.contact {
+  background-color: #fff;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact .form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  max-width: 500px;
+  margin: auto;
+}
+
+.contact label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.contact button {
+  background-color: #0070f3;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.contact button:hover {
+  background-color: #00c897;
 }
