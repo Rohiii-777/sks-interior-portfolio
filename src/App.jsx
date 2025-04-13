@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import emailjs from 'emailjs-com';
+import Header from "/Components/Header.jsx"
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -61,8 +62,8 @@ export default function App() {
   return (
     <div className="font-sans text-gray-800">
       {/* Navbar */}
-
-
+    <Header/>
+    
       {/* Hero */}
       <header className="h-[60vh] bg-cover bg-center bg-[url('/batman.jpg')] flex items-center justify-center text-center text-white">
         <div className="bg-black bg-opacity-50 p-6 rounded">
