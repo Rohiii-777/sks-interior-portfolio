@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import emailjs from 'emailjs-com';
 import {
   FiMenu,
@@ -8,6 +8,7 @@ import {
   FiPhone,
   FiMapPin,
 } from 'react-icons/fi';
+import DesignThought from './components/DesignThought';
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -32,7 +33,12 @@ export default function App() {
     setSubmitStatus(null);
 
     emailjs
-      .sendForm('YOUR_SERVICE_ID', 'template_pgjih8z', e.target, 'YOUR_USER_ID')
+      .sendForm(
+        'service_009nii1',
+        'template_pgjih8z',
+        e.target,
+        '2UEoGXpOiYEJA0Y1f'
+      )
       .then(
         (result) => {
           console.log(result.text);
@@ -115,6 +121,66 @@ export default function App() {
     },
   ];
 
+  const roomTypes = [
+    'Living Spaces',
+    'Kitchen Designs',
+    'Bathroom Retreats',
+    'Bedroom Oasis',
+    'Home Offices',
+    'Dining Areas',
+  ];
+
+  const [displayText, setDisplayText] = useState(roomTypes[0]);
+  const currentIndexRef = useRef(0);
+  const isDeletingRef = useRef(false);
+  const currentTextRef = useRef('');
+  const typingSpeed = 150;
+  const deletingSpeed = 75;
+  const pauseBetween = 2000;
+
+  useEffect(() => {
+    let timer;
+
+    const typeWriter = () => {
+      const currentWord = roomTypes[currentIndexRef.current];
+
+      if (isDeletingRef.current) {
+        currentTextRef.current = currentWord.substring(
+          0,
+          currentTextRef.current.length - 1
+        );
+      } else {
+        currentTextRef.current = currentWord.substring(
+          0,
+          currentTextRef.current.length + 1
+        );
+      }
+
+      setDisplayText(currentTextRef.current);
+
+      if (!isDeletingRef.current && currentTextRef.current === currentWord) {
+        timer = setTimeout(() => {
+          isDeletingRef.current = true;
+          typeWriter();
+        }, pauseBetween);
+      } else if (isDeletingRef.current && currentTextRef.current === '') {
+        isDeletingRef.current = false;
+        currentIndexRef.current =
+          (currentIndexRef.current + 1) % roomTypes.length;
+        timer = setTimeout(typeWriter, typingSpeed);
+      } else {
+        const speed = isDeletingRef.current ? deletingSpeed : typingSpeed;
+        timer = setTimeout(typeWriter, speed);
+      }
+    };
+
+    timer = setTimeout(typeWriter, typingSpeed);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <div className="font-sans text-gray-800 antialiased">
       {/* Navigation */}
@@ -123,7 +189,7 @@ export default function App() {
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0 flex items-center">
               <span className="text-2xl font-bold text-gray-900">
-                SKS Interior
+                SKS Interior Design Studio
               </span>
             </div>
 
@@ -185,17 +251,22 @@ export default function App() {
       <header className="relative h-screen flex items-center justify-center bg-gray-900 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/ht.jpg"
+            src="/batman.jpg"
             alt="Luxury interior design"
             className="w-full h-full object-cover opacity-70"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent"></div>
         </div>
 
+        <DesignThought />
+
         <div className="relative z-10 px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
             Crafting Exceptional{' '}
-            <span className="text-blue-400">Living Spaces</span>
+            <span className="text-blue-400 relative inline-block min-w-[200px]">
+              {displayText}
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 animate-pulse"></span>
+            </span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-8">
             We transform your vision into beautifully functional interiors with
@@ -243,20 +314,24 @@ export default function App() {
             <div className="lg:col-span-6 mb-10 lg:mb-0">
               <img
                 src="/ht.jpg"
-                alt="About SKS Interior"
+                alt="About SKS Interior Design Studio"
                 className="rounded-lg shadow-xl w-full h-auto"
               />
             </div>
             <div className="lg:col-span-6">
               <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-6">
-                About <span className="text-blue-600">SKS Interior</span>
+                About{' '}
+                <span className="text-blue-600">
+                  SKS Interior Design Studio
+                </span>
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Founded in 2010, SKS Interior has been at the forefront of
-                creating stunning, functional spaces that reflect our clients'
-                personalities and lifestyles. Our team of passionate designers
-                brings together creativity, technical expertise, and attention
-                to detail to deliver exceptional results.
+                Founded in 2010,SKS Interior Design Studio has been at the
+                forefront of creating stunning, functional spaces that reflect
+                our clients' personalities and lifestyles. Our team of
+                passionate designers brings together creativity, technical
+                expertise, and attention to detail to deliver exceptional
+                results.
               </p>
               <div className="space-y-4">
                 {[
@@ -470,7 +545,7 @@ export default function App() {
               Get Started
             </a>
             <a
-              href="tel:+919876543210"
+              href="tel:+918830637646"
               className="px-8 py-4 bg-transparent border-2 border-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition duration-300 flex items-center justify-center gap-2"
             >
               <FiPhone /> Call Now
@@ -502,7 +577,7 @@ export default function App() {
                       Our Office
                     </h3>
                     <p className="text-gray-600">
-                      123 Design Street, Pune, Maharashtra 411001
+                      Wadgaon Budruk, Dhayari, Pune, Maharashtra 411041
                     </p>
                   </div>
                 </div>
@@ -513,8 +588,8 @@ export default function App() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-900">Phone</h3>
-                    <p className="text-gray-600">+91 98765 43210</p>
-                    <p className="text-gray-600">+91 20 1234 5678</p>
+                    <p className="text-gray-600">+91 88306 37646</p>
+                    {/* <p className="text-gray-600">+91 20 1234 5678</p> */}
                   </div>
                 </div>
 
@@ -527,7 +602,7 @@ export default function App() {
                       Follow Us
                     </h3>
                     <a
-                      href="https://instagram.com/sksinterior"
+                      href="https://www.instagram.com/interiorbysahil?igsh=MXMzeXJlbXRreThy"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline"
@@ -634,7 +709,9 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">SKS Interior</h3>
+              <h3 className="text-xl font-bold mb-4">
+                SKS Interior Design Studio
+              </h3>
               <p className="text-gray-400">
                 Creating beautiful, functional spaces that inspire and delight.
               </p>
@@ -687,20 +764,24 @@ export default function App() {
             <div>
               <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
               <address className="not-italic text-gray-400 space-y-2">
-                <p>123 Design Street</p>
-                <p>Pune, Maharashtra 411001</p>
-                <p>Phone: +91 98765 43210</p>
-                <p>Email: info@sksinterior.com</p>
+                <p>Wadgaon Budruk, Dhayari,</p>
+                <p>Pune, Maharashtra 411041</p>
+                <p>Phone: +91 88306 37646</p>
+                <p>Email: sahilsanas8980@gmail.comm</p>
               </address>
             </div>
           </div>
 
           <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400">
-              © {new Date().getFullYear()} SKS Interior. All rights reserved.
+              © {new Date().getFullYear()} SKS Interior Design Studio. All
+              rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white transition">
+              <a
+                href="https://www.facebook.com/profile.php?id=100089323626725"
+                className="text-gray-400 hover:text-white transition"
+              >
                 <span className="sr-only">Facebook</span>
                 <svg
                   className="h-6 w-6"
@@ -714,7 +795,10 @@ export default function App() {
                   ></path>
                 </svg>
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition">
+              <a
+                href="https://www.instagram.com/interiorbysahil?igsh=MXMzeXJlbXRreThy"
+                className="text-gray-400 hover:text-white transition"
+              >
                 <span className="sr-only">Instagram</span>
                 <svg
                   className="h-6 w-6"
