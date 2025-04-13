@@ -61,41 +61,12 @@ export default function App() {
   return (
     <div className="font-sans text-gray-800">
       {/* Navbar */}
-      <nav className="flex justify-between items-center px-6 py-4 bg-white shadow-md sticky top-0 z-50">
-        <div className="text-2xl font-bold">SKS Interior</div>
 
-        {/* Hamburger Icon */}
-        <div className="md:hidden text-2xl cursor-pointer" onClick={toggleMenu}>
-          ☰
-        </div>
-
-        {/* Nav Links */}
-        <ul
-          className={`flex flex-col md:flex-row md:items-center gap-6 
-      absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent px-6 py-4 
-      transition-all duration-300 ease-in-out
-      ${menuOpen ? 'block' : 'hidden'} md:flex`}
-        >
-          {['About', 'Services', 'Portfolio', 'Testimonials', 'Contact'].map(
-            (item) => (
-              <li key={item}>
-                <a
-                  href={`#${item.toLowerCase()}`}
-                  className="hover:text-blue-600 transition"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item}
-                </a>
-              </li>
-            )
-          )}
-        </ul>
-      </nav>
 
       {/* Hero */}
       <header className="h-[60vh] bg-cover bg-center bg-[url('/batman.jpg')] flex items-center justify-center text-center text-white">
         <div className="bg-black bg-opacity-50 p-6 rounded">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">SKS Interior</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">SKS Interior Design Studio</h1>
           <p className="text-lg md:text-xl">
             Transforming spaces with style, precision, and purpose.
           </p>
