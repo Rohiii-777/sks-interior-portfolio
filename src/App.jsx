@@ -8,7 +8,7 @@ import {
   FiPhone,
   FiMapPin,
 } from 'react-icons/fi';
-import DesignThought from './components/DesignThought';
+import DesignThought from './Components/DesignThought';
 
 export default function App() {
   const [formData, setFormData] = useState({
